@@ -1,0 +1,91 @@
+{
+    "index": "Authentication/Login.ejs",
+    "notfound": "Errors/404.ejs",
+    "redirect": {
+        "callback": "/dashboard",
+        "logout": "/loggedout",
+        "failedcreateserver": "/servers/new",
+        "failedmodifyserver": "/servers/edit",
+        "setplan": "/admin",
+        "failedsetplan": "/admin",
+        "createserverdisabled": "/servers/new?err=disabled",
+        "modifyserverdisabled": "/servers/modify?err=disabled",
+        "deleteserverdisabled": "/delete?err=disabled",
+        "regenpassword": "/settings",
+        "setresources": "/admin",
+        "failedsetresources": "/admin",
+        "giftresources": "/gift",
+        "failedgiftresources": "/gift",
+        "renewserver": "/dashboard",	
+        "setcoins": "/admin",	
+        "failedsetcoins": "/admin",	
+        "purchaseram": "/store",	
+        "failedpurchaseram": "/store",	
+        "purchasedisk": "/store",	
+        "failedpurchasedisk": "/store",	
+        "purchasecpu": "/store",	
+        "failedpurchasecpu": "/store",	
+        "purchaseservers": "/store",	
+        "failedpurchaseservers": "/store",
+        "arcioerror": "/earn",
+        "missingorinvalidcouponcode": "/redeem",
+        "successfullyredeemedcoupon": "/redeem",
+        "couponcreationfailed": "/admin",
+        "couponcreationsuccess": "/admin",
+        "couponrevokefailed": "/admin",
+        "couponrevokesuccess": "/admin",
+        "removeaccountfailed": "/admin",
+        "removeaccountsuccess": "/admin"
+    },
+    "pages": {
+        "loggedout": "Authentication/LoggedOut.ejs",
+        "auth": "Authentication/Provider.ejs",
+        "dashboard": "Resources/Pages/Dashboard.ejs",
+        "credentials": "Resources/Pages/Credentials.ejs",
+        "servers/new": "Resources/ServerRouter/CreateServer.ejs",
+        "servers/edit": "Resources/ServerRouter/EditServer.ejs",
+        "admin": "Resources/Pages/Admin/Admin.ejs",
+        "redeem": "Resources/Pages/Redeem.ejs",
+        "j4r": "Resources/Pages/JoinForRewards.ejs",
+        "gift": "Resources/Pages/Gift.ejs",
+        "linkvertise": "Resources/Pages/Linkvertise.ejs",
+        "redeem": "Resources/Pages/RedeemCoupon.ejs",
+        "buy": "Resources/PaymentRouter/BuyCoins.ejs",
+        "earn": "Resources/Pages/Earn.ejs",
+        "store": "Resources/Pages/Store.ejs",
+        "version": "Endpoints/Data/Version.ejs",
+        "info": "Endpoints/Data/Info.ejs",
+        "admin": "Admin/Main.ejs"
+    },
+    "mustbeloggedin": [
+        "/dashboard",
+        "/servers/new",
+        "/servers/edit",
+        "/credentials",
+        "/earn",
+        "/gift",
+        "/store",
+        "/buy",
+        "/admin",
+        "/redeem",
+        "/linkvertise"
+    ],
+    "mustbeadmin": [
+        "/admin"
+    ],
+    "variables": {
+        "faviconlink": "https://cdn.discordapp.com/attachments/881207010417315861/949595064554913812/Copy_of_H_35.png",
+        "home": {
+            "note": "Name & Icon have been moved to settings.json in Heliactyl 12.5.0",
+            "admin": "admin",
+            "buttontext": {
+                "loggedin": {
+                    "link": "/dashboard"
+                },
+                "loggedout": {
+                    "link": "/login"
+                }
+            }
+        }
+    }
+}

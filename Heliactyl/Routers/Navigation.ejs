@@ -1,0 +1,88 @@
+		<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="../dashboard">
+          <span class="align-middle"><%= settings.name %></span>
+        </a>
+
+				<ul class="sidebar-nav">
+
+          <li class="nav-item nav-category">
+            <span class="nav-link text-info">MANAGEMENT</span>
+          </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../dashboard">
+               <span class="align-middle">Dashboard</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../servers/new">
+               <span class="align-middle">Create Server</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../credentials">
+               <span class="align-middle">Credentials</span>
+            </a>
+					</li>
+          <li class="nav-item nav-category">
+            <span class="nav-link text-info">COINS & RESOURCES</span>
+          </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../earn">
+               <span class="align-middle">AFK Page</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../linkvertise">
+               <span class="align-middle">Linkvertise Earning</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../j4r">
+               <span class="align-middle">Join for Rewards</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../gift">
+               <span class="align-middle">Gift Coins</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../store">
+               <span class="align-middle">Resources Store</span>
+            </a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../redeem">
+               <span class="align-middle">Redeem Coupon</span>
+            </a>
+					</li>
+          <li class="nav-item nav-category">
+            <span class="nav-link text-info">PAYMENTS</span>
+          </li>
+        <% if (settings.stripe.enabled == true) { %>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../buy">
+               <span class="align-middle">Buy Coins</span>
+            </a>
+					</li>
+        <% } %>
+          <li class="nav-item nav-category">
+            <span class="nav-link text-info">MISC</span>
+          </li>
+        <% if (pterodactyl.root_admin == true) { %>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../admin">
+               <span class="align-middle">Admin</span>
+            </a>
+					</li>
+        <% } %>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="../logout">
+               <span class="align-middle">Logout</span>
+            </a>
+					</li>
+				</ul>
+
+			</div>
+		</nav>

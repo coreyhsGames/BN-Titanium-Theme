@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../../Components/Header.ejs') %>
+<%- include('../../Components/Styles.ejs') %>
+
+<body style="font-family: DM Sans; sans-serif;">
+	<div class="wrapper">
+      <%- include('../../Routers/Navigation.ejs') %>
+		<div class="main">
+			<nav style="background-color: #353539; color: white;" class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle js-sidebar-toggle">
+          <i class="hamburger align-self-center"></i>
+        </a>
+
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown">
+							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+                <i style="color: white;" class="align-middle text-white" data-feather="copy"></i>
+              </a>
+
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block text-white" href="#" data-bs-toggle="dropdown">
+                <span class="text-white">View account info</span>
+              </a>
+							<div style="background-color: #45454B;" class="dropdown-menu dropdown-menu-end">
+								<a style="background-color: #45454B; color: white;" class="dropdown-item" >Coin Balance: <span id="balance"></span></a>
+								<a style="background-color: #45454B; color: white;" class="dropdown-item" >Plan: <%= packagename.charAt(0).toUpperCase() + packagename.slice(1) %></a>
+            <script>
+              let balance = document.getElementById("balance")
+              balance.textContent = Math.floor(<%= coins %> * 100) / 100
+            </script>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<main style="background-color: #212122;" class="content">
+				<div class="container-fluid p-0">
+    <%
+      let ram = 0;
+      let disk = 0;
+      let cpu = 0;
+      let servers = pterodactyl.relationships.servers.data.length;
+      for (let i = 0, len = pterodactyl.relationships.servers.data.length; i < len; i++) {
+          ram = ram + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.memory == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.memory : 0);
+          disk = disk + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.disk == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.disk : 0);
+          cpu = cpu + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.cpu == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.cpu : 0);
+      }
+    %>
+            <% if (req.query.err) { %>
+            <div style="background-image: linear-gradient(to right, #FF5757, #FF9957); color: white; padding: 11px; border-radius: 3px;" class="alert">
+                <% if (req.query.err == "MISSINGVARIABLE") { %>
+                    You have not filled out all of the server information.
+                <% } else if (req.query.err == "NOTANUMBER") { %>
+                    RAM, disk and CPU must be a number.
+                <% } else if (req.query.err == "ERRORONCREATE") { %>
+                    Failed to create the server! The Panel responded with an error. If you are an administrator, the error response has been logged to the console.
+                <% } else if (req.query.err == "BIGSERVERNAME") { %>
+                    Your server name must be less than <b>191</b> characters.
+                <% } else if (req.query.err == "TOOMUCHSERVERS") { %>
+                    Too many servers!
+                <% } else if (req.query.err == "PREMIUMLOCATION") { %>
+                    Your plan does not have access to the selected location.
+                <% } else if (req.query.err == "TOOLITTLECOINS") { %>
+                    You do not have enough coins to create a server
+                <% } else if (req.query.err == "MUSTCOMPLETECAPTCHA") { %>
+                    You must complete the captcha to prove you are human!
+                <% } else if (req.query.err == "INVALIDCAPTCHARESPONSE") { %>
+                    You submitted an invalid captcha response, try again.
+                <% } else { %>
+                    <% if (req.query.num) { %>
+                        <% if (!isNaN(parseFloat(req.query.num))) { %>
+                            <% if (req.query.err == "TOOLITTLERAM" || req.query.err == "TOOLITTLEDISK" || req.query.err == "TOOLITTLECPU") { %>
+                                You must make a server with at least <b><%= req.query.num %></b>
+                                <% if (req.query.err.slice(-3) == "RAM") { %>
+                                    MB RAM
+                                <% } else if (req.query.err.slice(-4) == "DISK") { %>
+                                    MB disk
+                                <% } else { // CPU %>
+                                    % CPU
+                                <% } %>
+                                if you want to create a server with the server type you have selected.
+                            <% } else if (req.query.err == "TOOMUCHRAM" || req.query.err == "TOOMUCHDISK" || req.query.err == "TOOMUCHCPU") { %>
+                                With the selected server type, you can have a maximum of <b><%= req.query.num %></b>
+                                <% if (req.query.err.slice(-3) == "RAM") { %>
+                                    MB RAM
+                                <% } else if (req.query.err.slice(-4) == "DISK") { %>
+                                    MB disk
+                                <% } else { // CPU %>
+                                    % CPU
+                                <% } %>
+                                on the server.
+                            <% } else if (req.query.err == "EXCEEDRAM" || req.query.err == "EXCEEDDISK" || req.query.err == "EXCEEDCPU") { %>
+                                You don't have enough resources to make this server.
+                            <% } else { %>
+                                I won't mind to add a little easter egg here. :)
+                            <% } %>
+                        <% } else { %>
+                            I won't mind to add a little easter egg here. :)
+                        <% } %>
+                    <% } else { %>
+                        I won't mind to add a little easter egg here. :)
+                    <% } %>
+                <% } %>
+            </div><br>
+        <% } %>
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  border-radius: 5px;
+  overflow: hidden;
+  border: 3px solid #44444D;
+  background-color: #3a3a40;
+  color: white;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  color: white;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #44444d;
+  border-radius: 10px;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-image: linear-gradient(to right, #22B0C4, #22CDB8);
+  border-radius: 10px;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+}
+</style>
+<div class="tab">
+  <button class="tablinks" onclick="openStage(event, 'ServerName')" id="defaultOpen">Server name</button>
+  <button class="tablinks" onclick="openStage(event, 'Resources')">Resources</button>
+  <button class="tablinks" onclick="openStage(event, 'Disks')">Disks</button>
+  <button class="tablinks" onclick="openStage(event, 'Location')">Location</button>
+  <button class="tablinks" onclick="openStage(event, 'Software')">Software</button>
+  <button onclick="submitNew()" style="float: right; color: #17a2b8;" class="tablinks">Create 🡢</button>
+</div><br>
+						<div class="col-xl-12 col-xxl-12">
+							<div style="background-color: #3A3A40; border: 3px solid #44444D;" class="card flex-fill w-100">
+								<div class="card-body py-3">
+                     <form class="forms-sample">
+                      <div class="form-group">
+<div id="ServerName" class="tabcontent">
+                        <h3 style="color: white;">Choose a server name</h3>
+                       <label style="color: #6c757d;">Name:</label>
+                        <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="text" class="form-control" id="InputName">
+</div>
+
+<div id="Resources" class="tabcontent">
+                      <div class="form-group">
+                        <h3 style="color: white;">Choose your resources</h3>
+                        <label style="color: #6c757d;">RAM:</label>
+                        <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="number" class="form-control" id="InputRAM" placeholder="2048"><br>
+                        <label style="color: #6c757d;">CPU:</label>
+                        <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="number" class="form-control" id="InputCPU" placeholder="100">
+                      </div><br>
+</div>
+
+<div id="Disks" class="tabcontent">
+                        <h3 style="color: white;">Choose your disk settings</h3>
+                        <label style="color: #6c757d;">Size (MBs):</label>
+                        <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="number" class="form-control" id="InputDisk" placeholder="10240"><br>
+</div>
+
+<div id="Location" class="tabcontent">
+                        <h3 style="color: white;">Choose a location</h3>
+                      <script>
+                      let inputLOCC = ""
+                      function setINPLOC(num) {
+                      	inputLOCC = num;
+                        console.log(num)
+                      }
+                      </script>
+              <% for (let [name, value] of Object.entries(settings.api.client.locations)) { %>
+              
+              <label>
+  			<input type="radio" name="InputLoc" value="<%= name %>" onclick="setINPLOC(<%= name %>)">
+  			<img src="<%= value.banner %>">
+			</label>
+            &nbsp;&nbsp;&nbsp;
+              
+                <% } %>
+
+<style>
+
+/* HIDE RADIO */
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+padding: 10px;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid #17a2b8;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + img {
+  background-color: #5f676e;
+  border-radius: 10px;
+  border: 1px solid #17a2b8;
+  box-shadow: 0 0 0 .2rem #17a2b8
+}
+img {
+width:320px;
+height:180px;>
+padding: 10px;
+}
+
+</style>
+</div>
+
+<div id="Software" class="tabcontent">
+                        <h3 style="color: white;">Choose your server software</h3>
+                       <label style="color: #6c757d;">Type:</label>
+                        <select style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" class="form-control" id="InputEgg">
+                          <% for (let [name, value] of Object.entries(settings.api.client.eggs)) { %>
+                            <option value="<%= name %>"><%= value.display %></option>
+                          <% } %>
+                        </select>
+</div>
+                      </div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</main>
+
+    <script>
+      async function submitNew() {
+        let name = encodeURIComponent(document.getElementById("InputName").value);
+        let egg = encodeURIComponent(document.getElementById("InputEgg").value);
+        let ram = encodeURIComponent(document.getElementById("InputRAM").value);
+        let disk = encodeURIComponent(document.getElementById("InputDisk").value);
+        let cpu = encodeURIComponent(document.getElementById("InputCPU").value);
+        let location = inputLOCC;
+        document.location.href = `/create?name=${name}&egg=${egg}&ram=${ram}&disk=${disk}&cpu=${cpu}&location=${location}`;
+      };
+    </script>
+<script>
+function openStage(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+			<footer style="background-color: #37373B;" class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-4 text-start">
+							<p class="mb-0">
+								<a class="text-muted" target="_blank">© <%= settings.name %> | Powered by <a style="color: white" href="https://gitlab.com/Heliactyl/panel/">Heliactyl</a>
+							</p>
+						</div>
+						<div class="col-8 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<p><code style="color: #17a2b8;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	<script src="../assets/js/app.js"></script>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
+			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
+			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
+			gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
+			// Line chart
+			new Chart(document.getElementById("chartjs-dashboard-line"), {
+				type: "line",
+				data: {
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets: [{
+						label: "Sales ($)",
+						fill: true,
+						backgroundColor: gradient,
+						borderColor: window.theme.primary,
+						data: [
+							2115,
+							1562,
+							1584,
+							1892,
+							1587,
+							1923,
+							2566,
+							2448,
+							2805,
+							3438,
+							2917,
+							3327
+						]
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					tooltips: {
+						intersect: false
+					},
+					hover: {
+						intersect: true
+					},
+					plugins: {
+						filler: {
+							propagate: false
+						}
+					},
+					scales: {
+						xAxes: [{
+							reverse: true,
+							gridLines: {
+								color: "rgba(0,0,0,0.0)"
+							}
+						}],
+						yAxes: [{
+							ticks: {
+								stepSize: 1000
+							},
+							display: true,
+							borderDash: [3, 3],
+							gridLines: {
+								color: "rgba(0,0,0,0.0)"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			// Pie chart
+			new Chart(document.getElementById("chartjs-dashboard-pie"), {
+				type: "pie",
+				data: {
+					labels: ["Chrome", "Firefox", "IE"],
+					datasets: [{
+						data: [4306, 3801, 1689],
+						backgroundColor: [
+							window.theme.primary,
+							window.theme.warning,
+							window.theme.danger
+						],
+						borderWidth: 5
+					}]
+				},
+				options: {
+					responsive: !window.MSInputMethodContext,
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					cutoutPercentage: 75
+				}
+			});
+		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			// Bar chart
+			new Chart(document.getElementById("chartjs-dashboard-bar"), {
+				type: "bar",
+				data: {
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets: [{
+						label: "This year",
+						backgroundColor: window.theme.primary,
+						borderColor: window.theme.primary,
+						hoverBackgroundColor: window.theme.primary,
+						hoverBorderColor: window.theme.primary,
+						data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
+						barPercentage: .75,
+						categoryPercentage: .5
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					scales: {
+						yAxes: [{
+							gridLines: {
+								display: false
+							},
+							stacked: false,
+							ticks: {
+								stepSize: 20
+							}
+						}],
+						xAxes: [{
+							stacked: false,
+							gridLines: {
+								color: "transparent"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var markers = [{
+					coords: [31.230391, 121.473701],
+					name: "Shanghai"
+				},
+				{
+					coords: [28.704060, 77.102493],
+					name: "Delhi"
+				},
+				{
+					coords: [6.524379, 3.379206],
+					name: "Lagos"
+				},
+				{
+					coords: [35.689487, 139.691711],
+					name: "Tokyo"
+				},
+				{
+					coords: [23.129110, 113.264381],
+					name: "Guangzhou"
+				},
+				{
+					coords: [40.7127837, -74.0059413],
+					name: "New York"
+				},
+				{
+					coords: [34.052235, -118.243683],
+					name: "Los Angeles"
+				},
+				{
+					coords: [41.878113, -87.629799],
+					name: "Chicago"
+				},
+				{
+					coords: [51.507351, -0.127758],
+					name: "London"
+				},
+				{
+					coords: [40.416775, -3.703790],
+					name: "Madrid "
+				}
+			];
+			var map = new jsVectorMap({
+				map: "world",
+				selector: "#world_map",
+				zoomButtons: true,
+				markers: markers,
+				markerStyle: {
+					initial: {
+						r: 9,
+						strokeWidth: 7,
+						stokeOpacity: .4,
+						fill: window.theme.primary
+					},
+					hover: {
+						fill: window.theme.primary,
+						stroke: window.theme.primary
+					}
+				},
+				zoomOnScroll: false
+			});
+			window.addEventListener("resize", () => {
+				map.updateSize();
+			});
+		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
+			var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
+			document.getElementById("datetimepicker-dashboard").flatpickr({
+				inline: true,
+				prevArrow: "<span title=\"Previous month\">&laquo;</span>",
+				nextArrow: "<span title=\"Next month\">&raquo;</span>",
+				defaultDate: defaultDate
+			});
+		});
+	</script>
+    <%- include('../../Components/LoadingBar.ejs') %>
+
+</body>
+
+</html>
