@@ -50,29 +50,29 @@
                   <form action="/buycoins" method="GET">
                        <div class="form-group">
                          <label style="color: #6c757d;" for="Amount">Money Amount (£1/<%= settings.stripe.coins %> coins):</label>
-                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="number" class="form-control" id="Amount" placeholder="5" name="amt">
+                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="number" class="form-control" id="Amount" placeholder="5" name="amt">
                        </div><br>
                        <div class="form-group">
                          <label style="color: #6c757d;" for="InputName1">First Name:</label>
-                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="text" class="form-control" id="InputName1" placeholder="John" name="fn">
+                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="text" class="form-control" id="InputName1" placeholder="John" name="fn">
                        </div><br>
                        <div class="form-group">
                          <label style="color: #6c757d;" for="InputName2">Last Name:</label>
-                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="text" class="form-control" id="InputName2" placeholder="Doe" name="sn">
+                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="text" class="form-control" id="InputName2" placeholder="Doe" name="sn">
                        </div><br>
                        <div class="form-group">
                          <label style="color: #6c757d;" for="InputNumber">Credit Card Number:</label>
-                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="text" class="form-control" id="InputNumber" name="number" placeholder="00000000000000">
+                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="text" class="form-control" id="InputNumber" name="number" placeholder="00000000000000">
                        </div><br>
                        <div class="form-group">
                          <label style="color: #6c757d;" for="InputCVV">CVV:</label>
-                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="text" class="form-control" id="InputCVV" name="vrf" placeholder="000">
+                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="text" class="form-control" id="InputCVV" name="vrf" placeholder="000">
                        </div><br>
                        <div class="form-group">
                          <label style="color: #6c757d;" for="InputExpir">Expiration Date:</label>
                          <div class="row mx-auto">
-                         <select style="width: 20%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" class="form-control" style="width:45% !important;" name="month"><option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option><option value="4">4th</option><option value="5">5th</option><option value="6">6th</option><option value="7">7th</option><option value="8">8th</option><option value="9">9th</option><option value="10">10th</option><option value="11">11th</option><option value="12">12th</option></select><br><br> &nbsp;&nbsp;
-                         <select style="width: 20%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" class="form-control" style="width:45% !important;" name="year"><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option></select>
+                         <select style="width: 20%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" class="form-control" style="width:45% !important;" name="month"><option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option><option value="4">4th</option><option value="5">5th</option><option value="6">6th</option><option value="7">7th</option><option value="8">8th</option><option value="9">9th</option><option value="10">10th</option><option value="11">11th</option><option value="12">12th</option></select><br><br> &nbsp;&nbsp;
+                         <select style="width: 20%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" class="form-control" style="width:45% !important;" name="year"><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option></select>
                          </div>
                         <br>
                          <button class="btn btn-info btn-lg text-white" type="submit">Buy</button>
@@ -94,7 +94,7 @@
 						<div class="col-8 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<p><code style="color: #17a2b8;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
+									<p><code style="color: #944cff;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
 								</li>
 							</ul>
 						</div>
