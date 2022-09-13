@@ -3115,7 +3115,7 @@ fieldset:disabled .btn {
     color: #fff
 }
 
-.btn-warning {
+.btn-wrning {
     background-color: #fcb92c;
     border-color: #fcb92c;
     color: #000
@@ -12034,7 +12034,7 @@ footer.footer ul {
 .sidebar-toggle:hover .hamburger,
 .sidebar-toggle:hover .hamburger:after,
 .sidebar-toggle:hover .hamburger:before {
-    background: #17a2b8
+    background: #c095ff
 }
 
 .hamburger-right,
