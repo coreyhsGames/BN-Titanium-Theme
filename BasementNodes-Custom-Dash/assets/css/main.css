@@ -3072,16 +3072,16 @@ fieldset:disabled .btn {
 }
 
 .btn-info {
-    background-color: #17a2b8;
-    border-color: #17a2b8;
+    background-color: #a76bff;
+    border-color: #a76bff;
     color: #fff
 }
 
 .btn-check:focus+.btn-info,
 .btn-info:focus,
 .btn-info:hover {
-    background-color: #148a9c;
-    border-color: #128293;
+    background-color: #9a56ff;
+    border-color: #9a56ff;
     color: #fff
 }
 
@@ -3095,8 +3095,8 @@ fieldset:disabled .btn {
 .btn-info.active,
 .btn-info:active,
 .show>.btn-info.dropdown-toggle {
-    background-color: #128293;
-    border-color: #117a8a;
+    background-color: #9a56ff;
+    border-color: #ad76ff;
     color: #fff
 }
 
