@@ -39,38 +39,22 @@
 			<main style="background-color: #212122;" class="content">
 				<div class="container-fluid p-0">
 
-
-						<div class="col-xl-12 col-xxl-7">
+						<div class="col-xl-4 col-xxl-7">
 							<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card flex-fill w-100">
 								<div style="background-color: #3a3a40; color: white;" class="card-header">
 
-									<h5 class="card-title mb-0">Gift Coins</h5>
+									<h5 class="card-title mb-0">Redeem Coupon</h5>
 								</div>
 								<div class="card-body py-3">
-                    <form class="forms-sample">
-                      <div class="form-group">
-                        <label style="color: #6c757d;" for="InputID">Discord ID:</label>
-                        <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="number" class="form-control" id="InputID" placeholder="0000000000000000">
-                      </div><br>
-                      <div class="form-group">
-                        <label style="color: #6c757d;" for="InputCoins">Coins:</label>
-                        <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="number" class="form-control" id="InputCoins" placeholder="100">
-                      </div><br>
-                     <a role="button" class="btn btn-info btn-lg" href="javascript: submitGift()">Gift</a>
-                    </form>
+                                <form action="/coupon_redeem">
+                                            <label style="color: #6c757d;">Code:</label>
+											<input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="text" class="form-control" placeholder="EXAMPLE100" name="code">
+											<br>
+											<button class="btn btn-info btn-lg">Redeem</button>
+                                </form>
 								</div>
 							</div>
-						</div>
-					</div>
 			</main>
-
-    <script>
-      async function submitGift() {
-        let id = encodeURIComponent(document.getElementById("InputID").value);
-        let coins = encodeURIComponent(document.getElementById("InputCoins").value);
-        document.location.href = `/giftcoins?id=${id}&coins=${coins}`;
-      };
-    </script>
 
 			<footer style="background-color: #37373B;" class="footer">
 				<div class="container-fluid">
@@ -83,7 +67,7 @@
 						<div class="col-8 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<p><code style="color: #17a2b8;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
+									<p><code style="color: #944cff;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
 								</li>
 							</ul>
 						</div>

@@ -38,47 +38,44 @@
 
 			<main style="background-color: #212122;" class="content">
 				<div class="container-fluid p-0">
-    <%
-      let ram = 0;
-      let disk = 0;
-      let cpu = 0;
-      let servers = pterodactyl.relationships.servers.data.length;
-      for (let i = 0, len = pterodactyl.relationships.servers.data.length; i < len; i++) {
-          ram = ram + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.memory == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.memory : 0);
-          disk = disk + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.disk == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.disk : 0);
-          cpu = cpu + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.cpu == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.cpu : 0);
-      }
-    %>
-            <% if (req.session.newaccount || req.session.password) { %>
-            <div style="background-image: linear-gradient(to right, #3b7ddd, #33B0CB); color: white; padding: 11px; border-radius: 3px;" class="alert">
-                <% if (req.session.newaccount) { %>
-                    A new account has been created for you on the Pterodactyl Panel.<br>
-                <% } %>
-                <% if (req.session.password) { %>
-                    Your new password is <code style="color: white;"><%= req.session.password %></code>
-                <% } else { %>
-                    Please check your email to set your password.
-                <% } %>
-            </div><br>
-        <% } %>
-						<div class="col-xl-12 col-xxl-7">
+
+						<div class="col-xl-4 col-xxl-7">
 							<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card flex-fill w-100">
 								<div style="background-color: #3a3a40; color: white;" class="card-header">
 
-									<h5 class="card-title mb-0">AFK Page</h5>
+									<h5 class="card-title mb-0">J4R Servers</h5>
 								</div>
 								<div class="card-body py-3">
-<h1>You are now earning, well done!</h1>
-<br>
-                <p>Every <% if (settings.api.arcio["afk page"].every !== 1) { %><%= settings.api.arcio["afk page"].every %> seconds<% } else { %>second<% } %>, you will get <%= settings.api.arcio["afk page"].coins == 1 ? "a" : settings.api.arcio["afk page"].coins %> coin<%= settings.api.arcio["afk page"].coins == 1 ? "" : "s" %></p>
-                <p>To view your current coin balance, click "View account info" on the navigation bar</p>
-                  <script>
-                <%- arcioafktext %>
-            </script>
+                    <form class="forms-sample">
+              	      <div class="form-group">
+                      <table style="background-color: #3a3a40;" class="table">
+                        <thead style="background-color: #3a3a40;">
+                          <tr>
+                            <th style="color: white;"> Name </th>
+                            <th style="color: white;"> Reward </th>
+                            <th style="color: white;"> Options </th>
+                          </tr>
+                        </thead>
+                        <tbody style="background-color: #3a3a40;">
+                           <% for (let i = 0, len = settings.api.client.j4r.ads.length; i < len; i++) { %>
+                                <tr style="background-color: #3a3a40;">
+                                <td>
+                                  <span class="pl-2 text-info"><%= settings.api.client.j4r.ads[i].name %></span>
+                                </td>
+                                <td>
+                                  <span class="pl-2 text-white"><%= settings.api.client.j4r.ads[i].coins %> coins</span>
+                                </td>
+                                <td>
+                                <a role="button" class="btn btn-info" href="<%= settings.api.client.j4r.ads[i].invite %>">Join Server</a>
+                                <a role="button" class="btn btn-secondary" href="../login">Claim Reward</a>
+                                </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                      </table>
+                    </form>
 								</div>
 							</div>
-						</div>
-					</div>
 			</main>
 
 			<footer style="background-color: #37373B;" class="footer">
@@ -92,7 +89,7 @@
 						<div class="col-8 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<p><code style="color: #17a2b8;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
+									<p><code style="color: #944cff;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
 								</li>
 							</ul>
 						</div>

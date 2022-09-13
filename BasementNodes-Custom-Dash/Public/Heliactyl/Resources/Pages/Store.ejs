@@ -38,22 +38,80 @@
 
 			<main style="background-color: #212122;" class="content">
 				<div class="container-fluid p-0">
-
-						<div class="col-xl-4 col-xxl-7">
-							<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card flex-fill w-100">
-								<div style="background-color: #3a3a40; color: white;" class="card-header">
-
-									<h5 class="card-title mb-0">Redeem Coupon</h5>
-								</div>
-								<div class="card-body py-3">
-                                <form action="/coupon_redeem">
-                                            <label style="color: #6c757d;">Code:</label>
-											<input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="text" class="form-control" placeholder="EXAMPLE100" name="code">
-											<br>
-											<button class="btn btn-info btn-lg">Redeem</button>
-                                </form>
-								</div>
-							</div>
+            <div class="row">
+              <div class="col-md-6 grid-margin stretch-card">
+                <div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card">
+                  <div class="card-body">
+                    <form class="forms-sample" action="/buycpu">
+                      <div class="form-group">
+                        <label style="color: #6c757d;" style="font-weight: bold;">CPU:</label><BR>
+                        <select style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" name="amount" class="form-control">
+                          <option value=1><%= settings.api.client.coins.store.cpu.per %>% CPU - <%= settings.api.client.coins.store.cpu.cost %> coins</option>
+                          <option value=2><%= settings.api.client.coins.store.cpu.per * 2 %>% CPU - <%= settings.api.client.coins.store.cpu.cost * 2 %> coins</option>
+                        </select>
+                      </div><br>
+                      <button class="btn btn-info" type="submit">Purchase</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card">
+                  <div class="card-body">
+                    <form class="forms-sample" action="/buyram">
+                      <div class="form-group">
+                        <label style="color: #6c757d;" style="font-weight: bold;">RAM:</label><BR>
+                        <select style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" name="amount" class="form-control">
+                          <option value=1><%= settings.api.client.coins.store.ram.per %>MB RAM - <%= settings.api.client.coins.store.ram.cost %> coins</option>
+                          <option value=2><%= settings.api.client.coins.store.ram.per * 2 %>MB RAM - <%= settings.api.client.coins.store.ram.cost * 2 %> coins</option>
+                          <option value=3><%= settings.api.client.coins.store.ram.per * 3 %>MB RAM - <%= settings.api.client.coins.store.ram.cost * 3 %> coins</option>
+                          <option value=4><%= settings.api.client.coins.store.ram.per * 4 %>MB RAM - <%= settings.api.client.coins.store.ram.cost * 4 %> coins</option>
+                        </select>
+                      </div><br>
+                      <button class="btn btn-info" type="submit">Purchase</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card">
+                  <div class="card-body">
+                    <form class="forms-sample" action="/buydisk">
+                      <div class="form-group">
+                        <label style="color: #6c757d;" style="font-weight: bold;">Disk:</label><BR>
+                        <select style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" name="amount" class="form-control">
+                          <option value=1><%= settings.api.client.coins.store.disk.per %>MB Disk - <%= settings.api.client.coins.store.disk.cost %> coins</option>
+                          <option value=2><%= settings.api.client.coins.store.disk.per * 2 %>MB Disk - <%= settings.api.client.coins.store.disk.cost * 2 %> coins</option>
+                          <option value=3><%= settings.api.client.coins.store.disk.per * 3 %>MB Disk - <%= settings.api.client.coins.store.disk.cost * 3 %> coins</option>
+                          <option value=4><%= settings.api.client.coins.store.disk.per * 4 %>MB Disk - <%= settings.api.client.coins.store.disk.cost * 4 %> coins</option>
+                          <option value=5><%= settings.api.client.coins.store.disk.per * 5 %>MB Disk - <%= settings.api.client.coins.store.disk.cost * 5 %> coins</option>
+                        </select>
+                      </div><br>
+                      <button class="btn btn-info" type="submit">Purchase</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card">
+                  <div class="card-body">
+                    <form class="forms-sample" action="/buyservers">
+                      <div class="form-group">
+                        <label style="color: #6c757d;" style="font-weight: bold;">Servers:</label><BR>
+                        <select style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" name="amount" class="form-control">
+                          <option value=1><%= settings.api.client.coins.store.servers.per %> Server - <%= settings.api.client.coins.store.servers.cost %> coins</option>
+                          <option value=2><%= settings.api.client.coins.store.servers.per * 2 %> Servers - <%= settings.api.client.coins.store.servers.cost * 2 %> coins</option>
+                          <option value=3><%= settings.api.client.coins.store.servers.per * 3 %> Servers - <%= settings.api.client.coins.store.servers.cost * 3 %> coins</option>
+                          <option value=4><%= settings.api.client.coins.store.servers.per * 4 %> Servers - <%= settings.api.client.coins.store.servers.cost * 4 %> coins</option>
+                        </select>
+                      </div><br>
+                      <button class="btn btn-info" type="submit">Purchase</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 			</main>
 
 			<footer style="background-color: #37373B;" class="footer">
@@ -67,7 +125,7 @@
 						<div class="col-8 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<p><code style="color: #17a2b8;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
+									<p><code style="color: #944cff;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
 								</li>
 							</ul>
 						</div>

@@ -74,7 +74,7 @@
         "/admin"
     ],
     "variables": {
-        "faviconlink": "https://cdn.discordapp.com/attachments/881207010417315861/949595064554913812/Copy_of_H_35.png",
+        "faviconlink": "https://cdn.discordapp.com/attachments/866627015619903519/1018035285021425734/BasementNodesLogoSep2022Transparent.png",
         "home": {
             "note": "Name & Icon have been moved to settings.json in Heliactyl 12.5.0",
             "admin": "admin",

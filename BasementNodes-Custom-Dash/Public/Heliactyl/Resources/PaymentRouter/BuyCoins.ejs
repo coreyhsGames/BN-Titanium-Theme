@@ -16,8 +16,8 @@
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
 						<li class="nav-item dropdown">
-							<a style="color: white; !important" class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                <i class="align-middle text-white" data-feather="copy"></i>
+							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+                <i style="color: white;" class="align-middle text-white" data-feather="copy"></i>
               </a>
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block text-white" href="#" data-bs-toggle="dropdown">
@@ -38,123 +38,49 @@
 
 			<main style="background-color: #212122;" class="content">
 				<div class="container-fluid p-0">
-    <%
-      let ram = 0;
-      let disk = 0;
-      let cpu = 0;
-      let servers = pterodactyl.relationships.servers.data.length;
-      for (let i = 0, len = pterodactyl.relationships.servers.data.length; i < len; i++) {
-          ram = ram + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.memory == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.memory : 0);
-          disk = disk + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.disk == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.disk : 0);
-          cpu = cpu + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.cpu == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.cpu : 0);
-      }
-    %>
-					<div class="row">
-						<div class="col-xl-8 col-xxl-5 d-flex">
-							<div class="w-100">
-								<div class="row">
-									<div class="col-sm-6">
-										<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">RAM available</h5>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3"><%= packages.ram + extraresources.ram - ram %>MB</h1>
-											</div>
-										</div>
-										<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">CPU available</h5>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3"><%= packages.cpu + extraresources.cpu - cpu %>%</h1>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Disk available</h5>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3"><%= packages.disk + extraresources.disk - disk %>MB</h1>
-											</div>
-										</div>
-										<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Servers available</h5>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3"><%= packages.servers + extraresources.servers - servers %></h1>
-											</div>
-										</div>
-                                    </div>
-									<div class="col-sm-12">
-										<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Plan</h5>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3"><%= packagename.charAt(0).toUpperCase() + packagename.slice(1) %></h1>
-											</div>
-										</div>
-                                    </div>
-								</div>
-							</div>
-						</div>
 
-						<div class="col-xl-6 col-xxl-7">
+
+						<div class="col-xl-12 col-xxl-7">
 							<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card flex-fill w-100">
 								<div style="background-color: #3a3a40; color: white;" class="card-header">
 
-									<h5 class="card-title mb-0">Your Servers</h5>
+									<h5 class="card-title mb-0">Buy Coins</h5>
 								</div>
 								<div class="card-body py-3">
-                    <div style="color: white;" class="table-responsive">
-                      <table style="background-color: #3a3a40;" class="table">
-                        <thead style="background-color: #3a3a40;">
-                          <tr>
-                            <th style="color: white;"> Server Name </th>
-                            <th style="color: white;"> Options </th>
-                          </tr>
-                        </thead>
-                        <tbody style="background-color: #3a3a40;">
-                            <% if (pterodactyl.relationships.servers.data.length == 0) { %>
-                              <tr style="background-color: #3a3a40;">
-                              <td style="color: white;"> No servers found. You can <a href="../servers/new" class="text-info">click here</a> to create one.</td>
-                              </tr>
-                            <% } else { %>
-                              <% for (let i = 0, len = pterodactyl.relationships.servers.data.length; i < len; i++) { %>
-                                <tr style="background-color: #3a3a40;">
-                                <td>
-                                  <span class="pl-2 text-info"><%= pterodactyl.relationships.servers.data[i].attributes.name.length > 40 ? pterodactyl.relationships.servers.data[i].attributes.name.slice(0, 40) + "..." : pterodactyl.relationships.servers.data[i].attributes.name %></span>
-                                </td>
-                                <td>
-                                <a role="button" class="btn btn-info" href="/servers/edit?id=<%= pterodactyl.relationships.servers.data[i].attributes.id %>">Edit</a>
-                                <a role="button" class="btn btn-danger" onclick="if (confirm('Are you sure you want to delete the server? This action is irreversible.')) { window.location.href='/delete?id=<%= pterodactyl.relationships.servers.data[i].attributes.id %>' }">Delete</a>
-                                <a role="button" class="btn btn-danger" onclick="if (confirm('Are you sure you want to delete the server? This action is irreversible.')) { window.location.href='/forcedelete?id=<%= pterodactyl.relationships.servers.data[i].attributes.id %>' }">Force Delete</a>
-                                </td>
-                                </tr>
-                              <% } %>
-                            <% } %>
-                        </tbody>
-                      </table><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                  <form action="/buycoins" method="GET">
+                       <div class="form-group">
+                         <label style="color: #6c757d;" for="Amount">Money Amount (£1/<%= settings.stripe.coins %> coins):</label>
+                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="number" class="form-control" id="Amount" placeholder="5" name="amt">
+                       </div><br>
+                       <div class="form-group">
+                         <label style="color: #6c757d;" for="InputName1">First Name:</label>
+                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="text" class="form-control" id="InputName1" placeholder="John" name="fn">
+                       </div><br>
+                       <div class="form-group">
+                         <label style="color: #6c757d;" for="InputName2">Last Name:</label>
+                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="text" class="form-control" id="InputName2" placeholder="Doe" name="sn">
+                       </div><br>
+                       <div class="form-group">
+                         <label style="color: #6c757d;" for="InputNumber">Credit Card Number:</label>
+                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="text" class="form-control" id="InputNumber" name="number" placeholder="00000000000000">
+                       </div><br>
+                       <div class="form-group">
+                         <label style="color: #6c757d;" for="InputCVV">CVV:</label>
+                         <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" type="text" class="form-control" id="InputCVV" name="vrf" placeholder="000">
+                       </div><br>
+                       <div class="form-group">
+                         <label style="color: #6c757d;" for="InputExpir">Expiration Date:</label>
+                         <div class="row mx-auto">
+                         <select style="width: 20%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" class="form-control" style="width:45% !important;" name="month"><option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option><option value="4">4th</option><option value="5">5th</option><option value="6">6th</option><option value="7">7th</option><option value="8">8th</option><option value="9">9th</option><option value="10">10th</option><option value="11">11th</option><option value="12">12th</option></select><br><br> &nbsp;&nbsp;
+                         <select style="width: 20%; padding: 15px; background-color: #4A4A52; border-color: #944cff; color: white;" class="form-control" style="width:45% !important;" name="year"><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option></select>
+                         </div>
+                        <br>
+                         <button class="btn btn-info btn-lg text-white" type="submit">Buy</button>
+                         </form>
 								</div>
 							</div>
 						</div>
 					</div>
-
-				</div>
 			</main>
 
 			<footer style="background-color: #37373B;" class="footer">
@@ -168,7 +94,7 @@
 						<div class="col-8 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<p><code style="color: #17a2b8;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
+									<p><code style="color: #944cff;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
 								</li>
 							</ul>
 						</div>

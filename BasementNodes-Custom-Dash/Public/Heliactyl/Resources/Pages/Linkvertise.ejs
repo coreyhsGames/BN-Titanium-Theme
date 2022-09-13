@@ -38,70 +38,21 @@
 
 			<main style="background-color: #212122;" class="content">
 				<div class="container-fluid p-0">
-    <%
-      let ram = 0;
-      let disk = 0;
-      let cpu = 0;
-      let servers = pterodactyl.relationships.servers.data.length;
-      for (let i = 0, len = pterodactyl.relationships.servers.data.length; i < len; i++) {
-          ram = ram + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.memory == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.memory : 0);
-          disk = disk + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.disk == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.disk : 0);
-          cpu = cpu + (typeof pterodactyl.relationships.servers.data[i].attributes.limits.cpu == "number" ? pterodactyl.relationships.servers.data[i].attributes.limits.cpu : 0);
-      }
-    %>
-            <% if (req.session.newaccount || req.session.password) { %>
-            <div style="background-image: linear-gradient(to right, #03989E, #33B0CB); color: white; padding: 11px; border-radius: 3px;" class="alert">
-                <% if (req.session.newaccount) { %>
-                    A new account has been created for you on the Pterodactyl Panel.<br>
-                <% } %>
-                <% if (req.session.password) { %>
-                    Your new password is <code style="color: white;"><%= req.session.password %></code>
-                <% } else { %>
-                    Please check your email to set your password.
-                <% } %>
-            </div><br>
-        <% } %>
 
 
 						<div class="col-xl-12 col-xxl-7">
-							<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card flex-fill w-100">
+							<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" id="generate-panel" class="card flex-fill w-100">
 								<div style="background-color: #3a3a40; color: white;" class="card-header">
 
-									<h5 class="card-title mb-0">Credentials</h5>
+									<h5 class="card-title mb-0">Linkvertise Earning</h5>
 								</div>
 								<div class="card-body py-3">
-                    <form class="forms-sample">
-              	      <div class="form-group">
-                        <label style="color: #6c757d;" for="exampleInputUsername1">Email:</label>
-                        <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="email" class="form-control" value="<%= pterodactyl.email %>" placeholder="<%= pterodactyl.email %>" disabled>
-                      </div><br>
-                      <div class="form-group">
-                        <label style="color: #6c757d;" for="exampleInputUsername1">Username:</label>
-                        <input style="width: 40%; padding: 15px; background-color: #4A4A52; border-color: #17a2b8; color: white;" type="text" class="form-control" value="<%= pterodactyl.username %>" placeholder="<%= pterodactyl.username %>" disabled>
-                      </div><br>
-              		  <a role="button" class="btn btn-info btn-lg" href="/regen">Regenerate Password</a>
-              		  <a role="button" class="btn btn-secondary btn-lg" href="/panel">Panel</a>
-                    </form>
+                      <p>Every time you complete a linkvertise link, you will earn <%= settings.linkvertise.coins%> coins!<br>Generate a link below:<br><br>
+                        <a href="../lv/gen" class="btn btn-info btn-lg">Generate Link</a></p>
+									  </div>
 								</div>
 							</div>
 						</div>
-					</div>
-						<div class="col-xl-12 col-xxl-7">
-							<div style="background-color: #3a3a40; color: white; border: 3px solid #44444D;" class="card flex-fill w-100">
-								<div style="background-color: #3a3a40; color: white;" class="card-header">
-
-									<h5 class="card-title mb-0">Help</h5>
-								</div>
-								<div class="card-body py-3">
-                    <form class="forms-sample">
-              	      <div class="form-group">
-                      <p>You can use the credentials above on the <a href="../panel" class="text-info">Panel</a> to login & manage your servers.</p>
-                      <p>If you are unable to login, please try using your email as the username instead.</p>
-                    </form>
-								</div>
-							</div>
-						</div>
-					</div>
 			</main>
 
 			<footer style="background-color: #37373B;" class="footer">
@@ -115,7 +66,7 @@
 						<div class="col-8 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<p><code style="color: #17a2b8;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
+									<p><code style="color: #944cff;"">v<%= settings.version.replace(/"/g, `\\\\"`) %></code> - <span id="loadtime"></span></p>
 								</li>
 							</ul>
 						</div>
