@@ -142,16 +142,14 @@ h6 {
     font-size: .875rem
 }
 
-.bg-video {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    min-height: 100%;
-    min-width: 100%;
-    height: auto;
-    width: auto;
-    z-index: 100;
-}
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 
 p {
     margin-bottom: 1rem;
