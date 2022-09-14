@@ -149,6 +149,7 @@ video {
     position: fixed;
     top: 0;
     left: 0;
+    filter: brightness(50%);
   }
 
 p {
@@ -4254,7 +4255,8 @@ fieldset:disabled .btn {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: .875rem 1.375rem;
-    position: relative
+    position: relative;
+    z-index: 1;
 }
 
 .navbar>.container,
@@ -11998,7 +12000,8 @@ fieldset:disabled .btn {
 footer.footer {
     background: #fff;
     direction: ltr;
-    padding: 1rem .875rem
+    padding: 1rem .875rem;
+    z-index: 1;
 }
 
 footer.footer ul {
@@ -12071,7 +12074,8 @@ a.list-group-item {
 
 .navbar {
     border-bottom: 0;
-    box-shadow: 0 0 2rem 0 rgba(33, 37, 41, .1)
+    box-shadow: 0 0 2rem 0 rgba(33, 37, 41, .1);
+    z-index: 1;
 }
 
 @media(max-width:767.98px) {
@@ -12231,7 +12235,8 @@ screen and (-ms-high-contrast:active) {
 .sidebar {
     direction: ltr;
     max-width: 260px;
-    min-width: 260px
+    min-width: 260px;
+    z-index: 1;
 }
 
 .sidebar,
