@@ -9,4 +9,4 @@ Custom Heliactyl Theme for the BasementNodes Dashboard.
 The BasementNodes Titanium Theme a is durable and light weight theme. Both meaning little to no bugs, and a small theme size.
 
 ## Pictures / GIFs
-![Picture of theme](https://i.ibb.co/xsK474b/Screenshot-2022-09-14-212050.png)
+![Picture of theme](https://user-images.githubusercontent.com/87631878/190172561-cc918a3a-d5aa-4cd7-88c9-c31c66f6f9d1.png)
