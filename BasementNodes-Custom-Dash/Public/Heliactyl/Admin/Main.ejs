@@ -36,7 +36,8 @@
 				</div>
 			</nav>
 
-			<main style="background-color: #212122;" class="content">
+			<main class="content">
+				<video src="../../../assets/minecraft-4k-live-wallpaper-3.mp4" autoplay loop playsinline muted></video>
 				<div class="container-fluid p-0">
 
 				    <% if (req.query.code) { %>
@@ -52,7 +53,7 @@
 									<h5 class="card-title mb-0">Heliactyl Version</h5>
 								</div>
 								<div class="card-body py-3">
-                                    <p id="latestversion"><span>Fetching...</span></p>
+                                    <p id="latestversion"><span>Fetching... (If this is here for too long, it failed to fetch the version).</span></p>
                                     <script>
                                         fetch("https://srydenuk.github.io/versionapi/")
                                             .then(res => Promise.resolve(res.json()).then(ver => {
