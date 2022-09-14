@@ -12257,7 +12257,8 @@ screen and (-ms-high-contrast:active) {
     list-style: none;
     margin-bottom: 0;
     padding-left: 0;
-    background-color: #37373B
+    background-color: #37373B;
+    z-index: 1;
 }
 
 .sidebar-link,
