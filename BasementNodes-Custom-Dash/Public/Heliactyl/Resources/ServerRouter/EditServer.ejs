@@ -51,13 +51,13 @@
       }
     %>
             <% if (req.query.err) { %>
-            <div style="background-image: linear-gradient(to right, #FF5757, #FF9957); color: white; padding: 11px; border-radius: 3px;" class="alert">
+            <div style="background-image: linear-gradient(to right, #FF5757, #FF9957); color: white; padding: 11px; border-radius: 3px; position: relative;" class="alert">
                 <% if (req.query.err == "MISSINGVARIABLE") { %>
                     You have not filled out all of the server information.
                 <% } else if (req.query.err == "NOTANUMBER") { %>
                     RAM, disk and CPU must be a number.
                 <% } else if (req.query.err == "ERRORONCREATE") { %>
-                    Failed to create the server on Hival, the nodes may be full. Do not contact Hival support about this, just wait until new nodes are deployed.
+                    Failed to create the server on BasementNodes, the nodes may be full. Do not contact the BasementNodes support about this, just wait until new nodes are deployed.
                 <% } else if (req.query.err == "BIGSERVERNAME") { %>
                     Your server name must be less than <b>191</b> characters.
                 <% } else if (req.query.err == "TOOMUCHSERVERS") { %>
