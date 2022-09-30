@@ -55,7 +55,8 @@
         "store": "Resources/Pages/Store.ejs",
         "version": "Endpoints/Data/Version.ejs",
         "info": "Endpoints/Data/Info.ejs",
-        "admin": "Admin/Main.ejs"
+        "admin": "Admin/Main.ejs",
+        "paid": "Resources/Pages/Paid.ejs"
     },
     "mustbeloggedin": [
         "/dashboard",
@@ -68,7 +69,8 @@
         "/buy",
         "/admin",
         "/redeem",
-        "/linkvertise"
+        "/linkvertise",
+        "/paid"
     ],
     "mustbeadmin": [
         "/admin"
