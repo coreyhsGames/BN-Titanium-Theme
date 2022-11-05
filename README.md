@@ -10,5 +10,5 @@ Heliactyl: **[https://gitlab.com/heliactyl/panel](https://gitlab.com/heliactyl/p
 Custom Heliactyl Theme for the BasementNodes Dashboard.
 The BasementNodes Titanium Theme a is durable and light weight theme. Both meaning little to no bugs, and a small theme size.
 
-## Pictures / GIFs (Outdated)
-![Picture of theme](https://user-images.githubusercontent.com/83317368/190256046-5d938956-bad4-4e3e-9971-771167d3f69d.png)
+## Pictures / GIFs
+![Picture of theme](https://raw.githubusercontent.com/coreyhsGames/BN-Titanium-Theme/master/docs/Screenshot%202022-11-06%20091924.png)
